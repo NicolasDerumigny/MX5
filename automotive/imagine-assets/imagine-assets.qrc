@@ -74,7 +74,5 @@
         <file>switchdelegate-indicator@2x.png</file>
         <file>switchdelegate-indicator-pressed.png</file>
         <file>switchdelegate-indicator-pressed@2x.png</file>
-        <file>toolseparator-separator-vertical.9.png</file>
-        <file>toolseparator-separator-vertical@2x.9.png</file>
     </qresource>
 </RCC>

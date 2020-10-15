@@ -68,3 +68,9 @@ Button {
     icon.height: 44
     display: Button.TextUnderIcon
 }
+
+/*##^##
+Designer {
+    D{i:0;formeditorZoom:8}
+}
+##^##*/

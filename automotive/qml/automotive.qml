@@ -56,17 +56,17 @@ import QtQuick.Window 2.0
 
 ApplicationWindow {
     id: window
-    width: 1280
-    height: 720
+    width: 1024
+    height: 768
     minimumWidth: 1180
     minimumHeight: 663
     visible: true
     color: "#000000"
-    title: "Qt Quick Controls 2 - Imagine Style Example: Automotive"
+    title: "Project MX-5"
 
-    readonly property color colorGlow: "#1d6d64"
+    readonly property color colorGlow: "#fd6600"
     readonly property color colorWarning: "#d5232f"
-    readonly property color colorMain: "#6affcd"
+    readonly property color colorMain: "#fd6600"
     readonly property color colorBright: "#ffffff"
     readonly property color colorLightGrey: "#888"
     readonly property color colorDarkGrey: "#333"
@@ -88,6 +88,8 @@ ApplicationWindow {
 
     Frame {
         id: frame
+        width: 1024
+        height: 768
         anchors.fill: parent
         anchors.margins: 90
         anchors.leftMargin: 0
@@ -107,232 +109,331 @@ ApplicationWindow {
             anchors.topMargin: 0
             spacing: 0
 
-            StackLayout {
+            ColumnLayout {
+                x: 10
                 width: 300
-                height: 652
-                Layout.alignment: Qt.AlignLeft | Qt.AlignBottom
-                Layout.topMargin: 24
-                Layout.margins: 24
-                currentIndex: 1
-                Layout.preferredHeight: 0
-                Layout.fillHeight: true
-
-                Layout.preferredWidth: 300
                 Layout.maximumWidth: 300
+                Layout.minimumWidth: 300
+                Layout.margins: 10
+                Layout.fillHeight: true
                 Layout.fillWidth: true
+                spacing: 16
 
-                Item {}
-
-                ColumnLayout {
+                RowLayout {
+                    id: rowLayout2
                     width: 300
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                    height: 200
+                    spacing: 0
+                    Layout.maximumHeight: 250
+                    Layout.minimumHeight: 250
                     Layout.fillWidth: true
-                    spacing: 16
 
-                    ButtonGroup {
-                        id: viewButtonGroup
-                        buttons: viewTypeRowLayout.children
+                    ColumnLayout {
+                        id: columnLayout3
+                        width: 150
+                        height: 100
+                        spacing: 0
+                        Layout.minimumWidth: 150
+                        Layout.fillWidth: true
+
+                        FeatureButton {
+                            width: 150
+                            height: 60
+                            text: qsTr("Left\nwindow\nup")
+                            font.weight: Font.DemiBold
+                            font.capitalization: Font.AllUppercase
+                            Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                            Layout.minimumWidth: 140
+                            Layout.rightMargin: 5
+                            Layout.bottomMargin: 5
+                            Layout.topMargin: 5
+                            clip: false
+                            topPadding: 0
+                            bottomPadding: 0
+                            checkable: false
+                            icon.name: "windows"
+
+                            Layout.fillHeight: true
+                        }
+
+                        FeatureButton {
+                            width: 150
+                            height: 60
+                            text: qsTr("Left\nwindow\ndown")
+                            font.weight: Font.DemiBold
+                            font.capitalization: Font.AllUppercase
+                            Layout.minimumWidth: 140
+                            Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                            Layout.rightMargin: 5
+                            Layout.bottomMargin: 5
+                            Layout.topMargin: 5
+                            clip: false
+                            topPadding: 0
+                            bottomPadding: 0
+                            checkable: false
+                            icon.name: "windows"
+
+                            Layout.fillHeight: true
+                        }
+
+
                     }
+
+                    ColumnLayout {
+                        id: columnLayout2
+                        x: 150
+                        width: 150
+                        height: 100
+                        spacing: 0
+                        Layout.fillWidth: true
+                        Layout.minimumWidth: 150
+                        Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+
+                        FeatureButton {
+                            width: 150
+                            height: 60
+                            text: qsTr("Left\nwindow\nauto up")
+                            font.weight: Font.DemiBold
+                            font.capitalization: Font.AllUppercase
+                            Layout.maximumWidth: 65535
+                            Layout.minimumWidth: 140
+                            Layout.leftMargin: 5
+                            Layout.bottomMargin: 5
+                            Layout.topMargin: 5
+                            clip: false
+                            topPadding: 0
+                            bottomPadding: 0
+                            checkable: false
+                            icon.name: "windows_full"
+                            Layout.fillHeight: true
+                        }
+
+                        FeatureButton {
+                            width: 150
+                            height: 60
+                            text: qsTr("Left\nwindow\nauto down")
+                            font.weight: Font.DemiBold
+                            font.capitalization: Font.AllUppercase
+                            Layout.minimumWidth: 140
+                            Layout.rightMargin: 0
+                            Layout.margins: 0
+                            Layout.leftMargin: 5
+                            Layout.bottomMargin: 5
+                            Layout.topMargin: 5
+                            clip: false
+                            topPadding: 0
+                            bottomPadding: 0
+                            checkable: false
+                            icon.name: "windows_full"
+                            Layout.fillHeight: true
+                        }
+
+
+                    }
+
+
+                }
+
+                ButtonGroup {
+                    id: viewButtonGroup
+                    buttons: viewTypeRowLayout.children
+                }
+
+                GlowingLabel {
+                    text: qsTr("VOLUME")
+                    color: "white"
+                    font.pixelSize: fontSizeMedium
+                }
+
+                Dial {
+                    id: volumeDial
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                    from: 0
+                    value: 42
+                    to: 100
+                    stepSize: 1
+
+                    Layout.minimumWidth: 64
+                    Layout.minimumHeight: 64
+                    Layout.preferredWidth: 128
+                    Layout.preferredHeight: 128
+                    Layout.maximumWidth: 128
+                    Layout.maximumHeight: 128
+                    Layout.fillHeight: true
+
+                    Label {
+                        text: volumeDial.value.toFixed(0)
+                        color: "white"
+                        font.pixelSize: Qt.application.font.pixelSize * 3
+                        anchors.centerIn: parent
+                    }
+                }
+
+                ButtonGroup {
+                    id: audioSourceButtonGroup
+                }
+
+                RowLayout {
+                    Layout.fillWidth: true
+                    Layout.topMargin: 16
 
                     GlowingLabel {
-                        text: qsTr("VOLUME")
+                        id: radioOption
+                        text: qsTr("Music")
                         color: "white"
                         font.pixelSize: fontSizeMedium
-                    }
-
-                    Dial {
-                        id: volumeDial
-                        Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-                        from: 0
-                        value: 42
-                        to: 100
-                        stepSize: 1
-
-                        Layout.minimumWidth: 64
-                        Layout.minimumHeight: 64
-                        Layout.preferredWidth: 128
-                        Layout.preferredHeight: 128
-                        Layout.maximumWidth: 128
-                        Layout.maximumHeight: 128
-                        Layout.fillHeight: true
-
-                        Label {
-                            text: volumeDial.value.toFixed(0)
-                            color: "white"
-                            font.pixelSize: Qt.application.font.pixelSize * 3
-                            anchors.centerIn: parent
-                        }
-                    }
-
-                    ButtonGroup {
-                        id: audioSourceButtonGroup
-                    }
-
-                    RowLayout {
-                        Layout.fillWidth: true
-                        Layout.topMargin: 16
-
-                        GlowingLabel {
-                            id: radioOption
-                            text: qsTr("Music")
-                            color: "white"
-                            font.pixelSize: fontSizeMedium
-                            horizontalAlignment: Label.AlignLeft
-
-                            Layout.fillWidth: true
-                        }
-                        GlowingLabel {
-                            id: glowingLabel
-                            text: "Bluetooth"
-                            horizontalAlignment: Label.AlignRight
-                            font.pixelSize: fontSizeMedium * 0.8
-                            glowEnabled: false
-
-                            Layout.fillWidth: false
-                        }
-                    }
-
-                    Frame {
-                        id: stationFrame
-                        leftPadding: 1
-                        rightPadding: 1
-                        topPadding: 1
-                        bottomPadding: 1
+                        horizontalAlignment: Label.AlignLeft
 
                         Layout.fillWidth: true
-                        Layout.fillHeight: true
-                        Layout.preferredHeight: 128
-
-                        ListView {
-                            id: stationListView
-                            width: 236
-                            clip: true
-                            anchors.fill: parent
-
-                            ScrollIndicator.vertical: ScrollIndicator {
-                                parent: stationFrame
-                                anchors.top: parent.top
-                                anchors.right: parent.right
-                                anchors.rightMargin: 1
-                                anchors.bottom: parent.bottom
-                            }
-
-                            model: ListModel {
-                                ListElement { name: "V-Radio"; frequency: "105.5 MHz" }
-                                ListElement { name: "World News"; frequency: "93.4 MHz" }
-                                ListElement { name: "TekStep FM"; frequency: "95.0 MHz" }
-                                ListElement { name: "Classic Radio"; frequency: "89.9 MHz" }
-                                ListElement { name: "Buena Vista FM"; frequency: "100.8 MHz" }
-                                ListElement { name: "Drive-by Radio"; frequency: "99.1 MHz" }
-                                ListElement { name: "Unknown #1"; frequency: "104.5 MHz" }
-                                ListElement { name: "Unknown #2"; frequency: "91.2 MHz" }
-                                ListElement { name: "Unknown #3"; frequency: "93.8 MHz" }
-                                ListElement { name: "Unknown #4"; frequency: "80.4 MHz" }
-                                ListElement { name: "Unknown #5"; frequency: "101.1 MHz" }
-                                ListElement { name: "Unknown #6"; frequency: "92.2 MHz" }
-                            }
-                            delegate: ItemDelegate {
-                                id: stationDelegate
-                                width: stationListView.width
-                                height: 22
-                                text: model.name
-                                font.pixelSize: fontSizeExtraSmall
-                                topPadding: 0
-                                bottomPadding: 0
-
-                                contentItem: RowLayout {
-                                    Label {
-                                        text: model.name
-                                        font: stationDelegate.font
-                                        horizontalAlignment: Text.AlignLeft
-                                        Layout.fillWidth: true
-                                    }
-                                    Label {
-                                        text: model.frequency
-                                        font: stationDelegate.font
-                                        horizontalAlignment: Text.AlignRight
-                                        Layout.fillWidth: true
-                                    }
-                                }
-                            }
-                        }
                     }
+                    GlowingLabel {
+                        id: glowingLabel
+                        text: "Bluetooth"
+                        horizontalAlignment: Label.AlignRight
+                        font.pixelSize: fontSizeMedium * 0.8
+                        glowEnabled: false
 
-                    Frame {
-                        Layout.fillWidth: true
+                        Layout.fillWidth: false
+                    }
+                }
 
-                        RowLayout {
-                            width: 236
-                            anchors.fill: parent
-                            anchors.rightMargin: 0
-                            clip: true
 
-                            Label {
-                                text: qsTr("Sort by:")
-                                font.pixelSize: fontSizeExtraSmall
+                Frame {
+                    id: stationFrame
+                    width: 255
+                    height: 200
+                    leftPadding: 1
+                    rightPadding: 1
+                    topPadding: 1
+                    bottomPadding: 1
 
-                                Layout.alignment: Qt.AlignTop
-                            }
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    Layout.preferredHeight: 128
 
-                            ColumnLayout {
-                                x: 120
-                                RadioButton {
-                                    text: qsTr("Name")
-                                    font.pixelSize: fontSizeExtraSmall
-                                    checked: true
+                    ListView {
+                        id: stationListView
+                        width: 236
+                        clip: true
+                        anchors.fill: parent
+
+                        ScrollIndicator.vertical: ScrollIndicator {
+                            parent: stationFrame
+                            anchors.top: parent.top
+                            anchors.right: parent.right
+                            anchors.rightMargin: 1
+                            anchors.bottom: parent.bottom
+                        }
+
+                        model: ListModel {
+                            ListElement { name: "V-Radio"; frequency: "105.5 MHz" }
+                            ListElement { name: "World News"; frequency: "93.4 MHz" }
+                            ListElement { name: "TekStep FM"; frequency: "95.0 MHz" }
+                            ListElement { name: "Classic Radio"; frequency: "89.9 MHz" }
+                            ListElement { name: "Buena Vista FM"; frequency: "100.8 MHz" }
+                            ListElement { name: "Drive-by Radio"; frequency: "99.1 MHz" }
+                            ListElement { name: "Unknown #1"; frequency: "104.5 MHz" }
+                            ListElement { name: "Unknown #2"; frequency: "91.2 MHz" }
+                            ListElement { name: "Unknown #3"; frequency: "93.8 MHz" }
+                            ListElement { name: "Unknown #4"; frequency: "80.4 MHz" }
+                            ListElement { name: "Unknown #5"; frequency: "101.1 MHz" }
+                            ListElement { name: "Unknown #6"; frequency: "92.2 MHz" }
+                        }
+                        delegate: ItemDelegate {
+                            id: stationDelegate
+                            width: stationListView.width
+                            height: 22
+                            text: model.name
+                            font.pixelSize: fontSizeExtraSmall
+                            topPadding: 0
+                            bottomPadding: 0
+
+                            contentItem: RowLayout {
+                                Label {
+                                    text: model.name
+                                    font: stationDelegate.font
+                                    horizontalAlignment: Text.AlignLeft
+                                    Layout.fillWidth: true
                                 }
-                                RadioButton {
-                                    text: qsTr("Artiste")
-                                    font.pixelSize: fontSizeExtraSmall
-                                }
-                                RadioButton {
-                                    text: qsTr("Album")
-                                    font.pixelSize: fontSizeExtraSmall
-                                    checked: false
+                                Label {
+                                    text: model.frequency
+                                    font: stationDelegate.font
+                                    horizontalAlignment: Text.AlignRight
+                                    Layout.fillWidth: true
                                 }
                             }
-
-                            FeatureButton {
-                                height: 60
-                                text: qsTr("Up")
-                                Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
-                                checkable: false
-                                Layout.maximumHeight: navigationFeatureButton.height
-                                Layout.bottomMargin: 0
-                                clip: false
-                                bottomPadding: 0
-                                Layout.fillHeight: true
-                                Layout.rightMargin: 5
-                                Layout.topMargin: 0
-                                topPadding: 0
-                                icon.name: "folder_up"
-                            }
-
                         }
                     }
                 }
-            }
 
-            Rectangle {
-                x: 0
-                color: colorMain
-                Layout.bottomMargin: 24
-                Layout.topMargin: 24
-                implicitWidth: 1
-                Layout.fillHeight: true
+                Frame {
+                    Layout.fillWidth: true
+
+                    RowLayout {
+                        width: 236
+                        anchors.fill: parent
+                        anchors.rightMargin: 0
+                        clip: true
+
+                        Label {
+                            text: qsTr("Sort by:")
+                            font.pixelSize: fontSizeExtraSmall
+                            Layout.alignment: Qt.AlignTop
+                        }
+
+                        ColumnLayout {
+                            x: 120
+                            RadioButton {
+                                text: qsTr("Name")
+                                font.pixelSize: fontSizeExtraSmall
+                                checked: true
+                            }
+                            RadioButton {
+                                text: qsTr("Artiste")
+                                font.pixelSize: fontSizeExtraSmall
+                            }
+                            RadioButton {
+                                text: qsTr("Album")
+                                font.pixelSize: fontSizeExtraSmall
+                                checked: false
+                            }
+                        }
+
+                        FeatureButton {
+                            height: 60
+                            text: qsTr("Up")
+                            Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+                            checkable: false
+                            Layout.maximumHeight: navigationFeatureButton.height
+                            Layout.bottomMargin: 0
+                            clip: false
+                            bottomPadding: 0
+                            Layout.fillHeight: true
+                            Layout.rightMargin: 5
+                            Layout.topMargin: 0
+                            topPadding: 0
+                            icon.name: "folder_up"
+                        }
+
+                    }
+                }
+
+
+
             }
 
             ColumnLayout {
                 x: 0
-                width: 746
+                width: 384
+                Layout.topMargin: 50
                 Layout.preferredWidth: -1
                 Layout.maximumWidth: 65535
-                Layout.leftMargin: 24
-                Layout.rightMargin: 24
-                Layout.bottomMargin: 24
-                Layout.margins: 24
+                Layout.leftMargin: 0
+                Layout.rightMargin: 0
+                Layout.bottomMargin: 0
+                Layout.margins: 0
                 Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-                Layout.fillWidth: true
+                Layout.fillWidth: false
                 Layout.fillHeight: true
 
                 GlowingLabel {
@@ -368,233 +469,151 @@ ApplicationWindow {
                     height: 100
                     visible: true
                     source: "../icons/automotive/MX5.svg"
+                    Layout.maximumWidth: 384
                     Layout.preferredWidth: -1
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
+                    Layout.alignment: Qt.AlignLeft | Qt.AlignTop
                     clip: false
                     mipmap: false
                     cache: false
                     smooth: true
                     asynchronous: false
-                    Layout.fillHeight: true
-                    Layout.fillWidth: false
+                    Layout.fillHeight: false
+                    Layout.fillWidth: true
                     sourceSize.width: 746
                     fillMode: Image.PreserveAspectFit
                 }
             }
 
-            Rectangle {
-                x: 0
-                color: colorMain
-                Layout.rightMargin: 0
-                Layout.leftMargin: 0
-                Layout.margins: 0
-                Layout.bottomMargin: 24
-                Layout.topMargin: 174
-                implicitWidth: 1
-                Layout.fillHeight: true
-            }
-
             RowLayout {
                 id: rowLayout1
-                width: 100
-                height: 100
+                x: 0
+                y: 10
+                width: 300
+                height: 200
+                spacing: 0
+                Layout.alignment: Qt.AlignRight | Qt.AlignTop
+                Layout.maximumHeight: 250
+                Layout.minimumHeight: 250
+                Layout.margins: 10
+                Layout.fillWidth: false
 
-                Container {
-                    id: rightTabBar
-                    width: 140
-                    Layout.rightMargin: 24
-                    Layout.leftMargin: 24
-                    Layout.fillWidth: false
-                    Layout.bottomMargin: 24
-                    Layout.topMargin: 174
+                RowLayout {
+                    id: rowLayout
+                    width: 300
+                    height: 100
+                    visible: true
+                    spacing: 0
+                    Layout.minimumWidth: 300
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                    Layout.fillWidth: true
 
-                    currentIndex: 1
-
-                    Layout.fillHeight: true
-
-                    RowLayout {
-                        id: rowLayout
+                    ColumnLayout {
+                        id: columnLayout1
                         width: 100
                         height: 100
+                        spacing: 0
+                        Layout.topMargin: 0
+                        Layout.fillWidth: true
 
-                        ColumnLayout {
-                            id: columnLayout1
-                            width: 100
-                            height: 100
-                            Layout.topMargin: 0
+                        FeatureButton {
+                            width: 60
+                            height: 60
+                            text: qsTr("Right\nwindow\nup")
+                            font.weight: Font.DemiBold
+                            font.capitalization: Font.AllUppercase
                             Layout.fillWidth: true
+                            Layout.rightMargin: 5
+                            Layout.bottomMargin: 5
+                            Layout.topMargin: 5
+                            clip: false
+                            topPadding: 0
+                            bottomPadding: 0
+                            checkable: false
+                            enabled: true
+                            autoExclusive: false
+                            icon.name: "windows"
 
-                            FeatureButton {
-                                width: 60
-                                height: 60
-                                text: qsTr("Right\nwindow\nup")
-                                Layout.rightMargin: 5
-                                Layout.bottomMargin: 5
-                                Layout.topMargin: 5
-                                clip: false
-                                topPadding: 0
-                                bottomPadding: 0
-                                checkable: false
-                                enabled: true
-                                autoExclusive: false
-                                icon.name: "windows"
-
-                                Layout.maximumHeight: navigationFeatureButton.height
-                                Layout.fillHeight: true
-                            }
-
-                            FeatureButton {
-                                height: 60
-                                text: qsTr("Right\nwindow\ndown")
-                                Layout.rightMargin: 5
-                                Layout.bottomMargin: 5
-                                Layout.topMargin: 5
-                                clip: false
-                                topPadding: 0
-                                bottomPadding: 0
-                                checkable: false
-                                icon.name: "windows"
-
-                                Layout.maximumHeight: navigationFeatureButton.height
-                                Layout.fillHeight: true
-                            }
-
-
-                            FeatureButton {
-                                height: 60
-                                text: qsTr("Left\nwindow\nup")
-                                Layout.rightMargin: 5
-                                Layout.bottomMargin: 5
-                                Layout.topMargin: 5
-                                clip: false
-                                topPadding: 0
-                                bottomPadding: 0
-                                checkable: false
-                                icon.name: "windows"
-
-                                Layout.maximumHeight: navigationFeatureButton.height
-                                Layout.fillHeight: true
-                            }
-
-                            FeatureButton {
-                                height: 60
-                                text: qsTr("Left\nwindow\ndown")
-                                Layout.rightMargin: 5
-                                Layout.bottomMargin: 5
-                                Layout.topMargin: 5
-                                clip: false
-                                topPadding: 0
-                                bottomPadding: 0
-                                checkable: false
-                                icon.name: "windows"
-
-                                Layout.maximumHeight: navigationFeatureButton.height
-                                Layout.fillHeight: true
-                            }
-
-
-
+                            Layout.fillHeight: true
                         }
 
-
-                        ColumnLayout {
-                            id: columnLayout
-                            width: 100
-                            height: 100
-                            Layout.topMargin: 0
+                        FeatureButton {
+                            height: 60
+                            text: qsTr("Right\nwindow\ndown")
+                            font.weight: Font.DemiBold
+                            font.capitalization: Font.AllUppercase
                             Layout.fillWidth: true
+                            Layout.rightMargin: 5
+                            Layout.bottomMargin: 5
+                            Layout.topMargin: 5
+                            clip: false
+                            topPadding: 0
+                            bottomPadding: 0
+                            checkable: false
+                            icon.name: "windows"
 
-                            FeatureButton {
-                                height: 60
-                                text: qsTr("Right\nwindow\nauto up")
-                                Layout.leftMargin: 5
-                                Layout.bottomMargin: 5
-                                Layout.topMargin: 5
-                                clip: false
-                                topPadding: 0
-                                bottomPadding: 0
-                                checkable: false
-                                icon.name: "windows_full"
-
-                                Layout.maximumHeight: navigationFeatureButton.height
-                                Layout.fillHeight: true
-                            }
-
-                            FeatureButton {
-                                height: 60
-                                text: qsTr("Right\nwindow\nauto down")
-                                Layout.leftMargin: 5
-                                Layout.bottomMargin: 5
-                                Layout.topMargin: 5
-                                clip: false
-                                topPadding: 0
-                                bottomPadding: 0
-                                checkable: false
-                                icon.name: "windows_full"
-
-                                Layout.maximumHeight: navigationFeatureButton.height
-                                Layout.fillHeight: true
-                            }
-
-                            FeatureButton {
-                                height: 60
-                                text: qsTr("Left\nwindow\nauto up")
-                                Layout.leftMargin: 5
-                                Layout.bottomMargin: 5
-                                Layout.topMargin: 5
-                                clip: false
-                                topPadding: 0
-                                bottomPadding: 0
-                                checkable: false
-                                icon.name: "windows_full"
-
-                                Layout.maximumHeight: navigationFeatureButton.height
-                                Layout.fillHeight: true
-                            }
-
-                            FeatureButton {
-                                height: 60
-                                text: qsTr("Left\nwindow\nauto down")
-                                Layout.leftMargin: 5
-                                Layout.bottomMargin: 5
-                                Layout.topMargin: 5
-                                clip: false
-                                topPadding: 0
-                                bottomPadding: 0
-                                checkable: false
-                                icon.name: "windows_full"
-
-                                Layout.maximumHeight: navigationFeatureButton.height
-                                Layout.fillHeight: true
-                            }
+                            Layout.fillHeight: true
                         }
 
+
+
+
                     }
 
-                    ButtonGroup {
-                        buttons: rightTabBarContentLayout.children
-                    }
 
+                    ColumnLayout {
+                        id: columnLayout
+                        width: 100
+                        height: 100
+                        spacing: 0
+                        Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+                        Layout.topMargin: 0
+                        Layout.fillWidth: true
 
-                    contentItem: ColumnLayout {
-                        id: rightTabBarContentLayout
-                        height: 736
-                        anchors.top: parent.top
-                        anchors.topMargin: 0
-                        spacing: 3
+                        FeatureButton {
+                            height: 60
+                            text: qsTr("Right\nwindow\nauto up")
+                            font.weight: Font.DemiBold
+                            font.capitalization: Font.AllUppercase
+                            Layout.fillWidth: true
+                            Layout.leftMargin: 5
+                            Layout.bottomMargin: 5
+                            Layout.topMargin: 5
+                            clip: false
+                            topPadding: 0
+                            bottomPadding: 0
+                            checkable: false
+                            icon.name: "windows_full"
+                            Layout.fillHeight: true
+                        }
 
-                        Repeater {
-                            model: rightTabBar.contentModel
+                        FeatureButton {
+                            height: 60
+                            text: qsTr("Right\nwindow\nauto down")
+                            font.weight: Font.DemiBold
+                            font.capitalization: Font.AllUppercase
+                            Layout.fillWidth: true
+                            Layout.leftMargin: 5
+                            Layout.bottomMargin: 5
+                            Layout.topMargin: 5
+                            clip: false
+                            topPadding: 0
+                            bottomPadding: 0
+                            checkable: false
+                            icon.name: "windows_full"
+                            Layout.fillHeight: true
                         }
                     }
-
-
-
-
-
 
                 }
+
             }
+
+
+
+
+
+
+
 
 
         }
@@ -605,6 +624,6 @@ ApplicationWindow {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.6600000262260437}
+    D{i:0;formeditorZoom:0.75}
 }
 ##^##*/
